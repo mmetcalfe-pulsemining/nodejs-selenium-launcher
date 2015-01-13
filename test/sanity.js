@@ -40,4 +40,13 @@ describe("sanity", function(){
     })
   });
 
+  it('should get the server port from the optional parameter', function(done) {
+    seleniumLauncher(function(er, selenium) {
+      if (er) return done(er);
+      assert.equal(selenium.port, 4444);
+      selenium.on('exit', function() { done() })
+      selenium.kill()
+    }, 4444)
+  });
+
 });
